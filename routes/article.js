@@ -1,11 +1,12 @@
 const express = require('express');
-const {createArticle} = require('../controllers/article')
-const auth = require('../middleware/auth')
+const auth = require('../middleware/auth');
+const {createArticle, getArticlesByPublishingDate} = require('../controllers/article')
+
 const router = express.Router();
 
-// router.use(auth);
+router.get('/fetch/date', getArticlesByPublishingDate);
+router.post('/create', createArticle);
 
-router.post('/', createArticle)
 
+module.exports = router;
 
-module.exports = express;
