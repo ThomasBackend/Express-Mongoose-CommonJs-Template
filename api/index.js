@@ -11,13 +11,14 @@ app.use(express.json());
 
 app.use('/article', articleRouter)
 
-app.post('*', (req,res) => {
-  return res.status(404).send('This route is not in use.')
-})
 
 app.use(
   express.static(path.join(__dirname, "../client/build"))
 );
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './client/build/index.html'));
+});
 
 const port = 8000;
 
